@@ -44,14 +44,14 @@ posts = [
 ]
 
 
-def index(request):
+def index(request: str):
     return render(request, 'blog/index.html', context={'posts': posts[::-1]})
 
 
-def post_detail(request, id):
+def post_detail(request: str, id: int):
     return render(request, 'blog/detail.html', context={'post': posts[id]})
 
 
-def category_posts(request, category_slug):
+def category_posts(request: str, category_slug: str):
     return render(request, 'blog/category.html',
                   context={'category_slug': category_slug})
