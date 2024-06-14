@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render
 
 posts = [
@@ -44,14 +45,18 @@ posts = [
 ]
 
 
-def index(request: str):
+def index(request):
     return render(request, 'blog/index.html', context={'posts': posts[::-1]})
 
 
-def post_detail(request: str, id: int):
-    return render(request, 'blog/detail.html', context={'post': posts[id]})
+def post_detail(request, id):
+    try:
+        return render(request, 'blog/detail.html',
+                      context={'post': posts[id]})
+    except IndexError:
+        raise Http404("Poll does not exist")
 
 
-def category_posts(request: str, category_slug: str):
+def category_posts(request, category_slug):
     return render(request, 'blog/category.html',
                   context={'category_slug': category_slug})

@@ -1,9 +1,9 @@
 from django.shortcuts import render
 
 
-def about(request: str):
+def about(request):
     return render(request, 'pages/about.html')
 
 
-def rules(request: str):
+def rules(request):
     return render(request, 'pages/rules.html')
